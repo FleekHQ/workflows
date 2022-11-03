@@ -59,4 +59,4 @@ jobs:
           url: '${WEBHOOK_URL}'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"status": "${{ steps.check.outputs.status }}", "id": "${{ github.run_id }}"}'
+          data: '{"status": "${{ steps.check.outputs.status }}", "siteDeploymentId": "${{ github.run_id }}"}'
