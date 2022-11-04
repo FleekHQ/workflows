@@ -46,8 +46,8 @@ jobs:
         working-directory: ${ROOT_DIR}
         run: ${BUILD_COMMAND}
       - name: Upload an artifact
-        working-directory: ${ROOT_DIR}
         uses: actions/upload-artifact@v1
+        working-directory: ${ROOT_DIR}
         with:
           name: build
           path: ${OUTPUT_DIR}
