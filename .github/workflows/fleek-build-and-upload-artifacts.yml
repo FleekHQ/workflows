@@ -12,11 +12,12 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
-    working_directory: ${ROOT_DIR}
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Detect package manager
+        working_directory: ${ROOT_DIR}
         id: detect-package-manager
         run: |
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
@@ -39,10 +40,13 @@ jobs:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Install dependencies
+        working_directory: ${ROOT_DIR}
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with custom script
+        working_directory: ${ROOT_DIR}
         run: ${BUILD_COMMAND}
       - name: Upload an artifact
+        working_directory: ${ROOT_DIR}
         uses: actions/upload-artifact@v1
         with:
           name: build
