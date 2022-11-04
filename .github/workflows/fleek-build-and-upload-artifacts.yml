@@ -54,10 +54,9 @@ jobs:
     steps: 
       - uses: martialonline/workflow-status@v2
         id: check
-      - name: Notify Fleek
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: '${WEBHOOK_URL}'
-          method: 'POST'
-          customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"status": "${{ steps.check.outputs.status }}", "siteDeploymentId": "${{ github.run_id }}"}'
+      - if: steps.check.outputs.status == 'success'
+        run: echo "Build succeeded"
+      - if: steps.check.outputs.status == 'failure'
+        run: echo "Build failed"
+      - if: steps.check.outputs.status == 'cancelled'
+        run: echo "Build cancelled"
