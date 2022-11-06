@@ -52,8 +52,7 @@ jobs:
     needs: [build]
     if: always()
     steps: 
-      - name: Check run status
-        uses: martialonline/workflow-status@v2
+      - uses: martialonline/workflow-status@v2
         id: check
       - if: steps.check.outputs.status == 'success'
         uses: fjogeleit/http-request-action@v1
