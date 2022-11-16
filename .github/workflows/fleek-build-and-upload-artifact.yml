@@ -1,9 +1,6 @@
 name: Fleek ⚡️ Build and Upload Artifact
 
 on:
-  push:
-    branches: [${TARGET_BRANCH}]
-
   workflow_dispatch:
 
 jobs:
